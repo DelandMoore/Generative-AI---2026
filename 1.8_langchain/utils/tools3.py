@@ -3,11 +3,10 @@ from langchain_core.tools import tool
 
 @tool
 def get_module_deadline(module_name:str)->str:
-#any @ is called a python decorator
- """look up the submision deadline for a named bootcamp module
- Args:
-  module_name: the name of the module eg "ANN","CNN","RNN"
+ """Look up the submission deadline for a named bootcamp module.
 
+ Args:
+  module_name: The module name, such as ANN, CNN, or RNN.
  """
  deadlines = {
   "ANN":"2026-06-30",
@@ -18,7 +17,7 @@ def get_module_deadline(module_name:str)->str:
 
 @tool
 def count_students_in_module(module_name:str)->str:
-     """Look up how many students are enrolled in a named module bootcamp module"""
+     """Look up how many students are enrolled in a bootcamp module."""
      counts = {
          "ANN": 60,
          "CNN": 95,
@@ -28,29 +27,25 @@ def count_students_in_module(module_name:str)->str:
     
 
 @tool
-def prerequisite_counter(module_name:int)->int:
-   """which module must be completed before another""" 
+def prerequisite_counter(module_name: str) -> str:
+     """Look up which module must be completed before the named module."""
 
-   counter={
-        "ANN":"1",
-        "CNN":"2",
-        "RNN":"3" 
-   }
-   return counter.get(module_name, "Module not found")
-#    if module_name not in counter:
-#         return "Module not found"
+     counter = {
+          "ANN": "No prerequisite",
+          "CNN": "ANN",
+          "RNN": "CNN"
+     }
+     return counter.get(module_name, "Module not found")
   
 
 
 @tool
 def session_module_lookup(module_name:str)->str:
-   """ Look up the room and session schedule for a specific named module"""   
+     """Look up the room and session schedule for a named module."""
 
-   lookup={
-        "ANN":"room A",
-        "CNN":"room B",
-        "RNN":"room C"
-   }
-#    if module_name not in lookup:
-#         return "Module not found"
-   return lookup.get(module_name, "Module not found")
+     lookup = {
+          "ANN": "Room A, Monday at 09:00",
+          "CNN": "Room B, Wednesday at 11:00",
+          "RNN": "Room C, Friday at 14:00"
+     }
+     return lookup.get(module_name, "Module not found")
